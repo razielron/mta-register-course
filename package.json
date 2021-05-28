@@ -1,0 +1,17 @@
+{
+  "name": "mta-register-course",
+  "version": "1.0.0",
+  "scripts": {
+    "signcourse": "npx wdio run ./wdio.conf.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@wdio/cli": "^7.0.9",
+    "@wdio/jasmine-framework": "^7.0.7",
+    "@wdio/local-runner": "^7.0.9",
+    "@wdio/spec-reporter": "^7.0.7",
+    "@wdio/sync": "^7.0.9",
+    "chromedriver": "^88.0.0",
+    "wdio-chromedriver-service": "^7.0.0"
+  }
+}
