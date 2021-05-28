@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc3fb867-bcf8-4eb7-9ce0-36fe10ce9726" name="Default Changelist" comment="" />
+    <list default="true" id="cc3fb867-bcf8-4eb7-9ce0-36fe10ce9726" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/test/pageobjects/login.page.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/pageobjects/login.page.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1pIs7YhMoIKiMAJS6jol6yLlnbG" />
   <component name="ProjectViewState">
@@ -16,7 +21,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../../../Program Files/nodejs/node" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
@@ -40,6 +45,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614881772091</updated>
       <workItem from="1614881773203" duration="8432000" />
+      <workItem from="1622199490218" duration="543000" />
     </task>
     <servers />
   </component>

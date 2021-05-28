@@ -56,12 +56,17 @@ class LoginPage extends Page {
         this.openCourse.click();
     }
 
-    registerCourse(interval, tsCheck) {
-        let btns = 0, now = Date.now();
-        let isValidTime = tsCheck.some(range => {
+    isValidTime(tsCheck) {
+        let now = Date.now();
+        /*return tsCheck.some(range => {
             return (now > range[0]) && (now < range[1]);
-        });
-        while(!btns && isValidTime) {
+        });*/
+        return true;
+    }
+
+    registerCourse(interval, tsCheck) {
+        let btns = 0;
+        while(!btns && this.isValidTime(tsCheck)) {
             browser.refresh();
             expect(this.infoCourseBtns[0].isDisplayed()).toEqual(true);
             btns = this.registerCourseBtns.length;
@@ -73,10 +78,6 @@ class LoginPage extends Page {
                 return true;
             }
             browser.pause(interval);
-            now = Date.now();
-            isValidTime = tsCheck.some(range => {
-                return (now > range[0]) && (now < range[1]);
-            });
         }
         return false;
     }
