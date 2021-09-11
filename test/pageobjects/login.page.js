@@ -19,7 +19,9 @@ class LoginPage extends Page {
     get searchBtn () { return $('#searchButton') }
     get searchInput () { return $('input[type="search"]') }
     get openCourse () { return $('input[name="B2"]') }
+    get groupsInfo () { return $$('div[class="text TextAlignRight"]') }
     get registerCourseBtns () { return $$('a[class="btn btn-md u-btn-primary rounded g-mb-12"]') }
+    registerGroupBtn (elem) { return elem.$('a[class="btn btn-md u-btn-primary rounded g-mb-12"]') }
     get infoCourseBtns () { return $$('a[class="btn btn-md u-btn-primary rounded g-mb-12  btn btn-md u-btn-primary rounded g-mb-12-light-green"]') }
     get pageTitle () { return $('h1[class="pagetitle"]') }
 
@@ -64,19 +66,32 @@ class LoginPage extends Page {
         return true;
     }
 
-    registerCourse(interval, tsCheck) {
-        let btns = 0;
-        while(!btns && this.isValidTime(tsCheck)) {
+    registerCourse(interval, tsCheck, groupNum) {
+        let btns = 0, regGroup = [], isRegistered = false;
+
+        while(!isRegistered && this.isValidTime(tsCheck)) {
             browser.refresh();
             expect(this.infoCourseBtns[0].isDisplayed()).toEqual(true);
             btns = this.registerCourseBtns.length;
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ " + btns);
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            console.log({btns});
+
             if(this.registerCourseBtns.length) {
-                this.registerCourseBtns[0].scrollIntoView();
-                this.registerCourseBtns[0].click();
-                console.log("REGISTERED!!!");
+                regGroup = this.groupsInfo.filter(group => {
+                    return group.getText().includes(groupNum);
+                });
+            }
+
+            if(regGroup.length) {
+                this.registerGroupBtn(regCourse[0]).scrollIntoView();
+                this.registerGroupBtn(regCourse[0]).click();
+                // this.registerCourseBtns[0].scrollIntoView();
+                // this.registerCourseBtns[0].click();
+                console.log(`${groupNum} REGISTERED!!!`);
                 return true;
             }
+
+            regGroup = []
             browser.pause(interval);
         }
         return false;
