@@ -17,11 +17,21 @@ class LoginPage extends Page {
     get frameSearch () { return $('input[aria-controls="select2-R1C4-results"]') }
     get frameOptions () { return $('#select2-R1C4-results') }
     get searchBtn () { return $('#searchButton') }
-    get searchInput () { return $('input[type="search"]') }
-    get openCourse () { return $('input[name="B2"]') }
-    get groupsInfo () { return $$('div[class="text TextAlignRight"]') }
-    get registerCourseBtns () { return $$('a[class="btn btn-md u-btn-primary rounded g-mb-12"]') }
-    registerGroupBtn (elem) { return elem.$('a[class="btn btn-md u-btn-primary rounded g-mb-12"]') }
+    get searchNameInput () { return $('input[type="search"]') }
+    get searchCodeInput () { return $('#SubjectCode') }
+    get searchCodeBtn() { return $('#searchButton'); }
+    get openCourseFromSearch () { return $('input[name="B2"]') }
+    get groupsInfo () { return $$('div[class="col-md-12 Father"]') }
+    get registerCourseBtns () { return $$('a[class="btn btn-md u-btn-primary rounded g-mb-12  btn btn-md u-btn-primary rounded g-mb-12-light-green"]')
+        .filter(elem => {
+            return elem.$('span[class="fas fa-pencil-alt"]').isExisting();
+        })
+    }
+    registerGroupBtn (elem) { return elem.$$('a[class="btn btn-md u-btn-primary rounded g-mb-12  btn btn-md u-btn-primary rounded g-mb-12-light-green"]')
+        .filter(elem => {
+            return elem.$('span[class="fas fa-pencil-alt"]').isExisting();
+        })[0]
+    }
     get infoCourseBtns () { return $$('a[class="btn btn-md u-btn-primary rounded g-mb-12  btn btn-md u-btn-primary rounded g-mb-12-light-green"]') }
     get pageTitle () { return $('h1[class="pagetitle"]') }
 
@@ -53,9 +63,18 @@ class LoginPage extends Page {
         this.searchBtn.click();
     }
 
-    searchCourse(courseName) {
-        this.searchInput.setValue(courseName);
-        this.openCourse.click();
+    searchCourseByName(courseName) {
+        this.searchNameInput.setValue(courseName);
+        this.openCourseFromSearch.click();
+    }
+
+    searchCourseByCode(codeCourse) {
+        this.searchCodeInput.waitForExist({timeout: 15000});
+        this.searchCodeInput.waitForDisplayed({timeout: 15000});
+        this.searchCodeInput.setValue(codeCourse);
+        this.searchCodeBtn.waitForExist({timeout: 15000});
+        this.searchCodeBtn.scrollIntoView();
+        this.searchCodeBtn.click();
     }
 
     isValidTime(tsCheck) {
@@ -83,8 +102,8 @@ class LoginPage extends Page {
             }
 
             if(regGroup.length) {
-                this.registerGroupBtn(regCourse[0]).scrollIntoView();
-                this.registerGroupBtn(regCourse[0]).click();
+                this.registerGroupBtn(regGroup[0]).scrollIntoView();
+                this.registerGroupBtn(regGroup[0]).click();
                 // this.registerCourseBtns[0].scrollIntoView();
                 // this.registerCourseBtns[0].click();
                 console.log(`${groupNum} REGISTERED!!!`);
